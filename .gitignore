@@ -1,0 +1,7 @@
+node_modules/
+dist/
+work/
+outputs/
+.git-failed-attempts/
+.DS_Store
+*.log
