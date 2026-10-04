@@ -422,10 +422,13 @@ button, input, textarea { font: inherit; }
   .launch-cards { grid-template-columns: 1fr; gap: 18px; }
   .editorial-card { min-height: 236px; }
 
-  .about-strip { grid-template-columns: .85fr 1.15fr; gap: 36px; padding-block: 88px 96px; align-items: start; }
-  .about-portrait-panel { align-self: start; min-height: 0; }
+  .about-strip { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); grid-template-areas: 'about-title about-title' 'about-portrait about-copy'; column-gap: 36px; row-gap: 46px; padding-block: 88px 96px; align-items: start; }
+  .about-content { display: contents; }
+  .about-title { grid-area: about-title; padding-bottom: 30px; }
+  .about-title .reference-heading { max-width: 760px; font-size: clamp(4.8rem, 8.6vw, 7rem); }
+  .about-portrait-panel { grid-area: about-portrait; align-self: start; min-height: 0; }
   .about-portrait { height: auto; aspect-ratio: 4 / 5; }
-  .about-lower { grid-template-columns: 1fr; gap: 32px; }
+  .about-lower { grid-area: about-copy; grid-template-columns: 1fr; gap: 32px; }
   .client-list { border-top: 1px solid #3b5159; border-left: 0; padding-top: 22px; padding-left: 0; }
 
   .process-section { grid-template-columns: .85fr 1.15fr; padding-block: 82px 90px; }
