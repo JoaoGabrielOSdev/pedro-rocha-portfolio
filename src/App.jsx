@@ -5,6 +5,7 @@ import CustomCursor from './components/CustomCursor';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import PageTransition from './components/PageTransition';
+import Preloader from './components/Preloader';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
@@ -13,10 +14,44 @@ import Project from './pages/Project';
 import Services from './pages/Services';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
+    let cancelled = false;
+    let retryTimer;
+    let attempts = 0;
+
+    const scrollToDestination = () => {
+      if (cancelled) return;
+
+      if (!hash) {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        return;
+      }
+
+      const target = document.getElementById(hash.slice(1));
+      if (!target) {
+        attempts += 1;
+        if (attempts < 24) retryTimer = window.setTimeout(scrollToDestination, 80);
+        return;
+      }
+
+      const headerOffset = 92;
+      const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    };
+
+    const firstFrame = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(scrollToDestination);
+    });
+
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(firstFrame);
+      window.clearTimeout(retryTimer);
+    };
+  }, [pathname, hash]);
+
   return null;
 }
 
@@ -26,6 +61,7 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <Preloader />
       <CustomCursor />
       <Header />
       <main>

@@ -10,7 +10,7 @@ export default {
         sky: '#a9dcf6',
       },
       fontFamily: {
-        display: ['"Arial Narrow"', 'Impact', 'sans-serif'],
+        display: ['"Bebas Neue"', '"Arial Narrow"', 'Impact', 'sans-serif'],
         sans: ['Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
       letterSpacing: {

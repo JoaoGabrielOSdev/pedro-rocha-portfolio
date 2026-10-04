@@ -9,12 +9,41 @@ export default function Contact() {
   const update = (event) => setForm({ ...form, [event.target.name]: event.target.value });
   const submit = (event) => {
     event.preventDefault();
-    const message = `Olá, Pedro! Meu nome é ${form.nome || '...'} e gostaria de conversar sobre um projeto de edição de vídeo. ${form.projeto || ''}`;
+    const nome = form.nome.trim();
+    const email = form.email.trim();
+    const projeto = form.projeto.trim();
+    const message = [
+      '*Novo contato pelo portfólio*',
+      '',
+      'Olá, Pedro! Tudo bem?',
+      '',
+      '*Dados do contato*',
+      `• Nome: ${nome}`,
+      `• E-mail: ${email}`,
+      '',
+      '*Sobre o projeto*',
+      projeto,
+      '',
+      'Gostaria de conversar sobre este projeto e entender os próximos passos.',
+    ].join('\r\n');
     window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
     setSent(true);
   };
 
   return (
-    <div className="mx-auto max-w-[1440px] px-5 pb-24 pt-36 md:px-10 md:pb-36"><section className="grid gap-12 border-b border-line pb-20 md:grid-cols-[.75fr_1.25fr] md:items-end"><p className="eyebrow">Contato / vamos conversar</p><div><h1 className="font-display text-[clamp(5.5rem,13vw,11rem)] uppercase leading-[.77] tracking-[-.065em] text-paper">Tem um<br /><span className="text-white/45">projeto</span><br />em mente?</h1><p className="mt-8 max-w-lg text-base leading-7 text-white/50">Conte um pouco sobre o que você precisa e vamos encontrar o ritmo certo para a sua próxima ideia.</p></div></section><section className="grid gap-16 py-20 md:grid-cols-[.8fr_1.2fr] md:py-28"><div><p className="eyebrow">Fale diretamente</p><a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noreferrer" className="contact-link"><MessageCircle size={18} /> (88) 99920-9286 <ArrowUpRight size={17} /></a><a href="mailto:pedrolucasrochaholanda@gmail.com" className="contact-link"><Mail size={18} /> pedrolucasrochaholanda@gmail.com <ArrowUpRight size={17} /></a><a href="https://instagram.com/pedrorochahl" target="_blank" rel="noreferrer" className="contact-link"><Instagram size={18} /> @pedrorochahl <ArrowUpRight size={17} /></a><p className="mt-14 max-w-xs text-sm leading-6 text-white/40">Atendimento para projetos selecionados, conteúdo recorrente e lançamentos digitais.</p></div><form onSubmit={submit} className="border-t border-line pt-2"><label className="form-field"><span>Seu nome</span><input name="nome" value={form.nome} onChange={update} placeholder="Como posso te chamar?" /></label><label className="form-field"><span>Seu e-mail</span><input name="email" type="email" value={form.email} onChange={update} placeholder="voce@empresa.com" /></label><label className="form-field"><span>Sobre o projeto</span><textarea name="projeto" value={form.projeto} onChange={update} placeholder="Formato, prazo, objetivo..." rows="4" /></label><button type="submit" className="button-primary mt-8">Conversar pelo WhatsApp <ArrowUpRight size={16} /></button>{sent && <p className="mt-4 text-xs text-sky">Abrindo uma conversa no WhatsApp.</p>}</form></section></div>
+    <main className="contact-page">
+      <header className="contact-hero">
+        <div className="contact-hero-topline"><p className="eyebrow">Contato / vamos conversar</p><span>01 — 01</span></div>
+        <div className="contact-hero-grid">
+          <h1>Tem um<br /><span>projeto</span><br />em mente?</h1>
+          <div className="contact-hero-aside"><p className="serif-copy">Conte um pouco sobre o que você precisa e vamos encontrar o ritmo certo para a sua próxima ideia.</p><div><span>Disponível para novos projetos</span><span>Resposta em até 24h</span></div></div>
+        </div>
+      </header>
+
+      <section className="contact-content">
+        <div className="contact-direct"><p className="eyebrow">Fale diretamente</p><div className="contact-links"><a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noreferrer" className="contact-link"><span><MessageCircle size={18} /> WhatsApp</span><span>(88) 99920-9286 <ArrowUpRight size={17} /></span></a><a href="mailto:pedrolucasrochaholanda@gmail.com" className="contact-link"><span><Mail size={18} /> E-mail</span><span>pedrolucasrochaholanda@gmail.com <ArrowUpRight size={17} /></span></a><a href="https://instagram.com/pedrorochahl" target="_blank" rel="noreferrer" className="contact-link"><span><Instagram size={18} /> Instagram</span><span>@pedrorochahl <ArrowUpRight size={17} /></span></a></div><p className="contact-note">Atendimento para projetos selecionados, conteúdo recorrente e lançamentos digitais.</p></div>
+        <form onSubmit={submit} className="contact-form"><div className="contact-form-heading"><p className="eyebrow">Briefing rápido</p><p>Me conte o essencial e eu retorno com os próximos passos.</p></div><label className="form-field"><span>Seu nome</span><input name="nome" value={form.nome} onChange={update} placeholder="Como posso te chamar?" required /></label><label className="form-field"><span>Seu e-mail</span><input name="email" type="email" value={form.email} onChange={update} placeholder="voce@empresa.com" required /></label><label className="form-field"><span>Sobre o projeto</span><textarea name="projeto" value={form.projeto} onChange={update} placeholder="Formato, prazo, objetivo..." rows="4" minLength="10" required /></label><button type="submit" className="button-primary">Conversar pelo WhatsApp <ArrowUpRight size={16} /></button>{sent && <p className="contact-success">Abrindo uma conversa no WhatsApp.</p>}</form>
+      </section>
+    </main>
   );
 }

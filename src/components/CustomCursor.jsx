@@ -28,7 +28,7 @@ export default function CustomCursor() {
     <motion.div
       className="pointer-events-none fixed left-0 top-0 z-[100] hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center md:flex"
       style={{ x: springX, y: springY }}
-      animate={{ width: label ? 88 : 14, height: label ? 88 : 14 }}
+      animate={{ opacity: label ? 1 : 0, width: label ? 88 : 0, height: label ? 88 : 0 }}
       transition={{ type: 'spring', stiffness: 400, damping: 28 }}
     >
       <span className="flex h-full w-full items-center justify-center rounded-full bg-sky/90 text-[9px] font-bold uppercase tracking-[0.18em] text-ink">
