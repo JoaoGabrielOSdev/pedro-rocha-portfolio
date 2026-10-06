@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useInView, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ProjectCard from '../components/ProjectCard';
 import Reveal from '../components/Reveal';
@@ -40,6 +40,11 @@ function Eyebrow({ children }) {
   return <p className="eyebrow text-sky">{children}</p>;
 }
 
+function SectionReveal({ children, className, ...props }) {
+  const prefersReducedMotion = useReducedMotion();
+  return <motion.section className={className} initial={prefersReducedMotion ? false : { opacity: 0, y: 28, clipPath: 'inset(7% 0 0 0)' }} whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0, clipPath: 'inset(0 0 0 0)' }} viewport={{ once: true, amount: 0.08, margin: '0px 0px -42px' }} transition={prefersReducedMotion ? undefined : { duration: .95, ease: [0.22, 1, 0.36, 1] }} {...props}>{children}</motion.section>;
+}
+
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('Todos');
   const filters = ['Todos', 'Talking Head', 'Cortes', 'Institucional', 'YouTube'];
@@ -73,24 +78,24 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="work" className="reference-container reference-section work-section">
+      <SectionReveal id="work" className="reference-container reference-section work-section">
         <Reveal className="work-intro">
           <div className="work-intro-title"><Eyebrow>Seleção de edições&nbsp; / &nbsp;01 — {String(filteredProjects.length).padStart(2, '0')}</Eyebrow><h2 className="reference-heading mt-4">Conheça meu trabalho</h2><div className="work-description"><p className="serif-copy text-[1.03rem] leading-[1.35] text-white/70">Vídeos bem editados são o primeiro passo para apresentar seu perfil ao público. Aqui está uma seleção de algumas edições e estilos diversificados.</p></div></div>
           <div className="work-filters" role="tablist" aria-label="Filtrar projetos por categoria">{filters.map((filter) => <button key={filter} type="button" role="tab" aria-selected={activeFilter === filter} className={activeFilter === filter ? 'active' : ''} onClick={() => setActiveFilter(filter)}>{filter}</button>)}</div>
         </Reveal>
         <motion.div layout className="work-grid" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12 }} transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}>{filteredProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</motion.div>
-      </section>
+      </SectionReveal>
 
-      <section className="reference-container reference-section motion-collage" aria-label="Seleção de motion e direção visual">
+      <SectionReveal className="reference-container reference-section motion-collage" aria-label="Seleção de motion e direção visual">
         <div className="motion-collage-head"><Eyebrow>Interlúdio visual&nbsp; / &nbsp;Motion</Eyebrow><span className="motion-collage-count">04</span></div>
         <div className="motion-collage-board">
           <div className="motion-collage-grid">
             {[['assaad.gif', 'Pedro Assad / SAME'], ['flavia.gif', 'Flávia Marinho / lançamentos'], ['motion.gif', 'Estudo de composição'], ['herisson.gif', 'Depoimentos / prova social']].map(([gif, label], index) => <Reveal key={gif} className={`motion-collage-item motion-collage-item-${index + 1}`} direction={index % 2 ? 'right' : 'left'}><span className="motion-collage-index">0{index + 1}</span><img src={`/gifs/${gif}`} alt={`Motion aplicado em ${label}`} loading="lazy" /><span className="motion-collage-label">{label}</span></Reveal>)}
           </div>
         </div>
-      </section>
+      </SectionReveal>
 
-      <section id="experience" className="reference-container reference-section launch-section">
+      <SectionReveal id="experience" className="reference-container reference-section launch-section">
         <Reveal className="launch-copy" direction="left"><Eyebrow>Lançamentos digitais&nbsp; / &nbsp;Parcerias</Eyebrow><h2 className="reference-heading mt-4">Edições em<br />grandes projetos.</h2></Reveal>
         <Reveal className="launch-cards" direction="right" delay={0.08}>
           <article className="editorial-card">
@@ -109,9 +114,9 @@ export default function Home() {
             <p><strong>Luana Pavanate</strong> · +100k seguidores e milhões de visualizações.<br /><strong>Pedro Vidoca</strong> · +1M no Instagram, 500k no TikTok e +10M de views.<br /><strong>Victória Nadalutti</strong> · +500k seguidores nas redes sociais.</p>
           </article>
         </Reveal>
-      </section>
+      </SectionReveal>
 
-      <section className="reference-container reference-section about-strip">
+      <SectionReveal className="reference-container reference-section about-strip">
         <Reveal className="about-portrait-panel" direction="left"><figure className="about-portrait"><img src="/images/retrato-pedro-client.jpeg" alt="Pedro Rocha em um retrato com luz azul" loading="lazy" /><figcaption className="about-portrait-meta"><span>Pedro Rocha</span><span>Editor de vídeo</span></figcaption></figure></Reveal>
         <div className="about-content">
           <Reveal className="about-title" direction="right"><Eyebrow>Sobre mim&nbsp; / &nbsp;Experiência</Eyebrow><h2 className="reference-heading mt-4">Quem está por<br />trás dos cortes.</h2></Reveal>
@@ -128,19 +133,19 @@ export default function Home() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </SectionReveal>
 
-      <section id="process" className="reference-container reference-section process-section">
+      <SectionReveal id="process" className="reference-container reference-section process-section">
         <Reveal className="process-title" direction="left"><Eyebrow>Como trabalho&nbsp; / &nbsp;Do planejamento à entrega</Eyebrow><h2 className="reference-heading mt-4">Da identidade<br />à entrega.</h2></Reveal>
         <Reveal className="process-grid" direction="right" delay={0.08}>
           {[['01', 'Alinhamento visual', 'Cores, fontes, referências e moodboard para projetos que começam do zero.'], ['02', 'Organização da demanda', 'Fluxo de pedidos, arquivos e prazos definidos.'], ['03', 'Edição e alinhamentos', 'Ajustes para encaixar o trabalho no que você precisa.'], ['04', 'Entrega', 'Vídeos finalizados dentro dos prazos combinados.']].map(([number, title, body]) => <article key={number} className="process-item"><div className="process-item-top"><span>Etapa</span><strong>{number}</strong></div><h3>{title}</h3><p className="serif-copy">{body}</p></article>)}
         </Reveal>
-      </section>
+      </SectionReveal>
 
-      <section className="reference-container reference-section services-strip">
+      <SectionReveal className="reference-container reference-section services-strip">
         <Reveal className="services-title" direction="left"><Eyebrow>Serviços de edição&nbsp; / &nbsp;Formatos e plataformas</Eyebrow><h2 className="reference-heading mt-4">Soluções para<br />o seu conteúdo.</h2></Reveal>
         <Reveal className="services-list" direction="right" delay={0.08}>{['Talking head e conteúdo para redes', 'Seleção e edição de cortes de lives', 'Edição institucional de eventos', 'Motion básico'].map((service, index) => <Link to="/servicos" className="service-link" key={service}><span className="service-number">0{index + 1}</span><span className="service-name">{service}</span><span className="service-arrow"><ArrowUpRight size={18} /></span></Link>)}<div className="services-footer"><span className="eyebrow">Formatos atendidos</span><p className="eyebrow">Instagram&nbsp; · &nbsp;TikTok&nbsp; · &nbsp;YouTube</p></div></Reveal>
-      </section>
+      </SectionReveal>
 
       <section id="contact" className="cta-section"><Reveal className="reference-container cta-inner"><div className="cta-topline"><p className="eyebrow">Contato&nbsp; / &nbsp;vamos conversar</p><span>06 — 06</span></div><div className="cta-main"><div className="cta-heading-wrap"><h2 className="font-display text-[clamp(4.5rem,8.7vw,8.5rem)] uppercase leading-[.78] tracking-[-.065em] text-paper">Vamos editar<br />seu próximo projeto?</h2><span className="cta-heading-rule" aria-hidden="true" /></div><div className="cta-side"><div className="cta-side-meta"><span>Disponível para novos projetos</span><span>01 — 01</span></div><p className="serif-copy text-[1.02rem] leading-[1.35] text-white/75">Pacotes de edição alinhados à sua demanda.<br />Converse comigo pelo WhatsApp ou agende uma call.</p><Link to="/contato" className="reference-button mt-5 w-full justify-between bg-sky text-ink hover:bg-paper">Conversar pelo WhatsApp <ArrowUpRight size={16} /></Link></div></div></Reveal></section>
     </div>
