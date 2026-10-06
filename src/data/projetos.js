@@ -42,12 +42,6 @@ export const projetos = [
     descricao: 'Talking head com presença direta, ritmo de cortes e acabamento pensado para aproximar a mensagem do público.',
   },
   {
-    id: 'pedro-souza', slug: 'pedro-souza', titulo: 'Uma ideia bem apresentada', cliente: 'Pedro Souza',
-    categoria: 'Talking Head', filtro: 'Talking Head', plataforma: 'Instagram', ano: '2026', formato: 'Talking head · 9:16', tipo: 'vertical',
-    video: '/videos/talking-pedro-souza.mp4', destaque: false,
-    descricao: 'Edição vertical com narrativa limpa e cortes que mantêm a atenção na fala.',
-  },
-  {
     id: 'corte-mente', slug: 'corte-mente', titulo: 'Mente em movimento', cliente: 'Seu Elias',
     categoria: 'Cortes', filtro: 'Cortes', plataforma: 'Instagram', ano: '2026', formato: 'Corte · 9:16', tipo: 'vertical',
     video: '/videos/corte-mente.mp4', destaque: false,
