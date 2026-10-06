@@ -25,15 +25,21 @@ export const projetos = [
   },
   {
     id: 'nattan', slug: 'nattan', titulo: 'A autoridade fala', cliente: 'Nattan',
-    categoria: 'Cortes', filtro: 'Cortes', plataforma: 'Instagram', ano: '2026', formato: 'Conteúdo · 9:16', tipo: 'vertical',
+    categoria: 'Talking Head', filtro: 'Talking Head', plataforma: 'Instagram', ano: '2026', formato: 'Conteúdo · 9:16', tipo: 'vertical',
     video: '/videos/nattan.mp4', videoDetail: '/videos/detail/nattan.mp4', destaque: true,
     descricao: 'Corte de conteúdo com legenda cinética e cortes que sustentam a fala sem tirar o foco da pessoa.',
   },
   {
     id: 'elias', slug: 'elias', titulo: 'Explicar também é criar', cliente: 'Elias',
-    categoria: 'Institucional', filtro: 'Institucional', plataforma: 'Instagram', ano: '2026', formato: 'Conteúdo médico · 9:16', tipo: 'vertical',
+    categoria: 'Talking Head', filtro: 'Talking Head', plataforma: 'Instagram', ano: '2026', formato: 'Conteúdo médico · 9:16', tipo: 'vertical',
     video: '/videos/elias.mp4', videoDetail: '/videos/detail/elias.mp4', destaque: true,
     descricao: 'Conteúdo médico com sobreposição anatômica e direção de atenção aplicada à fala do especialista.',
+  },
+  {
+    id: 'elias-7551', slug: 'elias-7551', titulo: 'Informação que orienta', cliente: 'Elias',
+    categoria: 'Institucional', filtro: 'Institucional', plataforma: 'Instagram', ano: '2026', formato: 'Institucional · 9:16', tipo: 'vertical',
+    video: '/videos/institutional-elias-7551.mp4', destaque: false,
+    descricao: 'Edição institucional para comunicar autoridade, cuidado e clareza em uma narrativa visual direta.',
   },
   {
     id: 'hendel', slug: 'hendel', titulo: 'Hendel em foco', cliente: 'Hendel',
@@ -70,6 +76,18 @@ export const projetos = [
     categoria: 'YouTube', filtro: 'YouTube', plataforma: 'YouTube', ano: '2026', formato: 'Vídeo · 16:9', tipo: 'horizontal',
     video: '/videos/youtube-tumulo.mp4', destaque: false,
     descricao: 'Edição longa para YouTube, com ritmo narrativo e construção audiovisual pensada para segurar a atenção.',
+  },
+  {
+    id: 'devour', slug: 'devour', titulo: 'Devour', cliente: 'Projeto YouTube',
+    categoria: 'YouTube', filtro: 'YouTube', plataforma: 'YouTube', ano: '2026', formato: 'Vídeo · 16:9', tipo: 'horizontal',
+    video: '/videos/youtube-devour.mp4', destaque: false,
+    descricao: 'Edição para YouTube com ritmo de gameplay, cortes de reação e construção de tensão ao longo do vídeo.',
+  },
+  {
+    id: 'green-hell', slug: 'green-hell', titulo: 'Green Hell', cliente: 'Projeto YouTube',
+    categoria: 'YouTube', filtro: 'YouTube', plataforma: 'YouTube', ano: '2026', formato: 'Vídeo · 16:9', tipo: 'horizontal',
+    video: '/videos/youtube-green-hell.mp4', destaque: false,
+    descricao: 'Narrativa de gameplay com progressão, ambientação e cortes que mantêm a experiência em movimento.',
   },
 ];
 

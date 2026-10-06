@@ -42,7 +42,7 @@ function Eyebrow({ children }) {
 
 function SectionReveal({ children, className, ...props }) {
   const prefersReducedMotion = useReducedMotion();
-  return <motion.section className={className} initial={prefersReducedMotion ? false : { opacity: 0, y: 28, clipPath: 'inset(7% 0 0 0)' }} whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0, clipPath: 'inset(0 0 0 0)' }} viewport={{ once: true, amount: 0.08, margin: '0px 0px -42px' }} transition={prefersReducedMotion ? undefined : { duration: .95, ease: [0.22, 1, 0.36, 1] }} {...props}>{children}</motion.section>;
+  return <motion.section className={className} initial={prefersReducedMotion ? false : { opacity: 0, y: 34, filter: 'blur(4px)', clipPath: 'inset(7% 0 0 0)' }} whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)', clipPath: 'inset(0 0 0 0)' }} viewport={{ once: true, amount: 0.1, margin: '0px 0px -52px' }} transition={prefersReducedMotion ? undefined : { duration: 1.05, ease: [0.22, 1, 0.36, 1] }} {...props}>{children}</motion.section>;
 }
 
 export default function Home() {
@@ -70,13 +70,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="stats-band" aria-label="Números de experiência">
+      <SectionReveal className="stats-band" aria-label="Números de experiência">
         <div className="reference-container stats-grid">
           <Stat value="2+" label="anos de experiência" index={0} />
           <Stat value="2.000+" label={<>vídeos para médicos<br />e advogados</>} index={1} />
           <Stat value="50+" label="perfis atendidos" index={2} />
         </div>
-      </section>
+      </SectionReveal>
 
       <SectionReveal id="work" className="reference-container reference-section work-section">
         <Reveal className="work-intro">
@@ -125,12 +125,6 @@ export default function Home() {
               <div className="about-copy-block"><span className="about-copy-index">01 / EXPERIÊNCIA</span><p className="serif-copy">Sou Pedro Rocha, editor de vídeo com mais de dois anos de experiência criando conteúdos para marcas pessoais, profissionais liberais e lançamentos digitais. Meu trabalho combina ritmo, clareza e identidade visual para transformar cada ideia em uma peça audiovisual que atinge seu público-alvo, se encaixando exatamente na sua estratégia de conteúdo.</p></div>
               <div className="about-copy-block"><span className="about-copy-index">02 / ALCANCE</span><p className="serif-copy">Ao longo desse caminho, já participei da edição de mais de 50 perfis e de mais de 2.000 vídeos para médicos, advogados e especialistas. Cada projeto parte de uma necessidade diferente — e termina em um conteúdo pronto para comunicar com autoridade.</p></div>
             </div>
-            <div className="client-list">
-              <div className="client-list-heading"><Eyebrow>Principais projetos e parcerias</Eyebrow><span className="client-count">07</span></div>
-              <ul className="client-list-items">
-                {['Sublime Cariri', 'Verz', 'ALP', 'Pedro Vidoca', 'Luana Pavanate', 'Pedro Assaad', 'Flávia Marinho'].map((client, index) => <li key={client}><span>{client}</span><small>0{index + 1}</small></li>)}
-              </ul>
-            </div>
           </Reveal>
         </div>
       </SectionReveal>
@@ -147,7 +141,7 @@ export default function Home() {
         <Reveal className="services-list" direction="right" delay={0.08}>{['Talking head e conteúdo para redes', 'Seleção e edição de cortes de lives', 'Edição institucional de eventos', 'Motion básico'].map((service, index) => <Link to="/servicos" className="service-link" key={service}><span className="service-number">0{index + 1}</span><span className="service-name">{service}</span><span className="service-arrow"><ArrowUpRight size={18} /></span></Link>)}<div className="services-footer"><span className="eyebrow">Formatos atendidos</span><p className="eyebrow">Instagram&nbsp; · &nbsp;TikTok&nbsp; · &nbsp;YouTube</p></div></Reveal>
       </SectionReveal>
 
-      <section id="contact" className="cta-section"><Reveal className="reference-container cta-inner"><div className="cta-topline"><p className="eyebrow">Contato&nbsp; / &nbsp;vamos conversar</p><span>06 — 06</span></div><div className="cta-main"><div className="cta-heading-wrap"><h2 className="font-display text-[clamp(4.5rem,8.7vw,8.5rem)] uppercase leading-[.78] tracking-[-.065em] text-paper">Vamos editar<br />seu próximo projeto?</h2><span className="cta-heading-rule" aria-hidden="true" /></div><div className="cta-side"><div className="cta-side-meta"><span>Disponível para novos projetos</span><span>01 — 01</span></div><p className="serif-copy text-[1.02rem] leading-[1.35] text-white/75">Pacotes de edição alinhados à sua demanda.<br />Converse comigo pelo WhatsApp ou agende uma call.</p><Link to="/contato" className="reference-button mt-5 w-full justify-between bg-sky text-ink hover:bg-paper">Conversar pelo WhatsApp <ArrowUpRight size={16} /></Link></div></div></Reveal></section>
+      <SectionReveal id="contact" className="cta-section"><Reveal className="reference-container cta-inner"><div className="cta-topline"><p className="eyebrow">Contato&nbsp; / &nbsp;vamos conversar</p><span>06 — 06</span></div><div className="cta-main"><div className="cta-heading-wrap"><h2 className="font-display text-[clamp(4.5rem,8.7vw,8.5rem)] uppercase leading-[.78] tracking-[-.065em] text-paper">Vamos editar<br />seu próximo projeto?</h2><span className="cta-heading-rule" aria-hidden="true" /></div><div className="cta-side"><div className="cta-side-meta"><span>Disponível para novos projetos</span><span>01 — 01</span></div><p className="serif-copy text-[1.02rem] leading-[1.35] text-white/75">Pacotes de edição alinhados à sua demanda.<br />Converse comigo pelo WhatsApp ou agende uma call.</p><Link to="/contato" className="reference-button mt-5 w-full justify-between bg-sky text-ink hover:bg-paper">Conversar pelo WhatsApp <ArrowUpRight size={16} /></Link></div></div></Reveal></SectionReveal>
     </div>
   );
 }
