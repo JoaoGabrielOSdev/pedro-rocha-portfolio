@@ -84,7 +84,7 @@ export default function Home() {
       <section className="reference-container reference-section motion-collage" aria-label="Seleção de motion e direção visual">
         <div className="motion-collage-head"><Eyebrow>Motion&nbsp; / &nbsp;Estudos visuais</Eyebrow><span className="motion-collage-count">04</span></div>
         <div className="motion-collage-grid">
-          {['assaad.gif', 'flavia.gif', 'motion.gif', 'herisson.gif'].map((gif, index) => <Reveal key={gif} className={`motion-collage-item motion-collage-item-${index + 1}`} direction={index % 2 ? 'right' : 'left'}><img src={`/gifs/${gif}`} alt="Animação de projeto audiovisual" loading="lazy" /></Reveal>)}
+          {['assaad.gif', 'flavia.gif', 'motion.gif', 'herisson.gif'].map((gif, index) => <Reveal key={gif} className={`motion-collage-item motion-collage-item-${index + 1}`} direction={index % 2 ? 'right' : 'left'}><span className="motion-collage-index">0{index + 1}</span><img src={`/gifs/${gif}`} alt="Animação de projeto audiovisual" loading="lazy" /></Reveal>)}
         </div>
       </section>
 
