@@ -42,7 +42,7 @@ function Eyebrow({ children }) {
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('Todos');
-  const filters = ['Todos', 'Talking head', 'Cortes', 'Institucional'];
+  const filters = ['Todos', 'Talking Head', 'Cortes', 'Institucional', 'YouTube'];
   const filteredProjects = activeFilter === 'Todos' ? projetos : projetos.filter((project) => project.filtro === activeFilter);
 
   return (
@@ -55,7 +55,7 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="hero-copy">
             <Eyebrow>Pedro Rocha&nbsp; / &nbsp;Edição de vídeo</Eyebrow>
             <h1 className="mt-5 max-w-[720px] font-display text-[clamp(4.8rem,9.1vw,9rem)] uppercase leading-[.78] tracking-[-.065em] text-paper">
-              <span>Cada frame.</span><span>Uma intenção.</span>
+              <span>Melhore seu</span><span>posicionamento</span><span>com a edição certa.</span>
             </h1>
             <p className="serif-copy mt-5 max-w-[460px] text-[1.05rem] leading-[1.28] text-paper/90 sm:text-xl">
               Edição de vídeo para marcas pessoais, profissionais liberais e lançamentos digitais.
@@ -75,41 +75,52 @@ export default function Home() {
 
       <section id="work" className="reference-container reference-section work-section">
         <Reveal className="work-intro">
-          <div className="work-intro-title"><Eyebrow>Seleção de edições&nbsp; / &nbsp;01 — {String(filteredProjects.length).padStart(2, '0')}</Eyebrow><h2 className="reference-heading mt-4">O trabalho fala.</h2><div className="work-description"><p className="serif-copy text-[1.03rem] leading-[1.35] text-white/70">Vídeos bem editados geram conexões reais. Aqui está uma seleção de edições que traduzem ideias em conteúdo que funciona.</p></div></div>
+          <div className="work-intro-title"><Eyebrow>Seleção de edições&nbsp; / &nbsp;01 — {String(filteredProjects.length).padStart(2, '0')}</Eyebrow><h2 className="reference-heading mt-4">Conheça meu trabalho</h2><div className="work-description"><p className="serif-copy text-[1.03rem] leading-[1.35] text-white/70">Vídeos bem editados são o primeiro passo para apresentar seu perfil ao público. Aqui está uma seleção de algumas edições e estilos diversificados.</p></div></div>
           <div className="work-filters" role="tablist" aria-label="Filtrar projetos por categoria">{filters.map((filter) => <button key={filter} type="button" role="tab" aria-selected={activeFilter === filter} className={activeFilter === filter ? 'active' : ''} onClick={() => setActiveFilter(filter)}>{filter}</button>)}</div>
         </Reveal>
         <motion.div layout className="work-grid" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12 }} transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}>{filteredProjects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</motion.div>
       </section>
 
+      <section className="reference-container reference-section motion-collage" aria-label="Seleção de motion e direção visual">
+        <div className="motion-collage-grid">
+          {['assaad.gif', 'flavia.gif', 'motion.gif', 'herisson.gif'].map((gif, index) => <Reveal key={gif} className={`motion-collage-item motion-collage-item-${index + 1}`} direction={index % 2 ? 'right' : 'left'}><img src={`/gifs/${gif}`} alt="Animação de projeto audiovisual" loading="lazy" /></Reveal>)}
+        </div>
+      </section>
+
       <section id="experience" className="reference-container reference-section launch-section">
-        <Reveal className="launch-copy" direction="left"><Eyebrow>Lançamentos digitais&nbsp; / &nbsp;Parcerias</Eyebrow><h2 className="reference-heading mt-4">Edição em<br />grandes lançamentos.</h2></Reveal>
+        <Reveal className="launch-copy" direction="left"><Eyebrow>Lançamentos digitais&nbsp; / &nbsp;Parcerias</Eyebrow><h2 className="reference-heading mt-4">Edições em<br />grandes projetos.</h2></Reveal>
         <Reveal className="launch-cards" direction="right" delay={0.08}>
           <article className="editorial-card">
-            <div className="editorial-card-meta"><span>01 / 02</span><span>Lançamento digital</span></div>
+            <div className="editorial-card-meta"><span>01 / 03</span><span>Lançamento digital</span></div>
             <h3>Pedro Assad /<br />SAME</h3>
             <p>Participação na edição do lançamento do SAME e na seleção e edição de cortes de lives no YouTube.</p>
           </article>
           <article className="editorial-card">
-            <div className="editorial-card-meta"><span>02 / 02</span><span>Parceria</span></div>
+            <div className="editorial-card-meta"><span>02 / 03</span><span>Parceria</span></div>
             <h3>Flávia Marinho /<br />Lançamentos digitais</h3>
             <p>A Nova Década de Ouro da Advocacia<br />Imersão Saúde em Foco 360º<br />Mastermovie<br />Novo Código de Honorários</p>
+          </article>
+          <article className="editorial-card editorial-card-results">
+            <div className="editorial-card-meta"><span>03 / 03</span><span>Resultados</span></div>
+            <h3>Projetos que<br />ganham escala</h3>
+            <p><strong>Luana Pavanate</strong> · +100k seguidores e milhões de visualizações.<br /><strong>Pedro Vidoca</strong> · +1M no Instagram, 500k no TikTok e +10M de views.<br /><strong>Victória Nadalutti</strong> · +500k seguidores nas redes sociais.</p>
           </article>
         </Reveal>
       </section>
 
       <section className="reference-container reference-section about-strip">
-        <Reveal className="about-portrait-panel" direction="left"><figure className="about-portrait"><img src="/images/retrato-pedro.png" alt="Pedro Rocha em um retrato com luz azul" loading="lazy" /><figcaption className="about-portrait-meta"><span>Pedro Rocha</span><span>Editor de vídeo / 2026</span></figcaption></figure></Reveal>
+        <Reveal className="about-portrait-panel" direction="left"><figure className="about-portrait"><img src="/images/retrato-pedro-client.jpeg" alt="Pedro Rocha em um retrato com luz azul" loading="lazy" /><figcaption className="about-portrait-meta"><span>Pedro Rocha</span><span>Editor de vídeo</span></figcaption></figure></Reveal>
         <div className="about-content">
           <Reveal className="about-title" direction="right"><Eyebrow>Sobre mim&nbsp; / &nbsp;Experiência</Eyebrow><h2 className="reference-heading mt-4">Quem está por<br />trás dos cortes.</h2></Reveal>
           <Reveal className="about-lower" direction="right" delay={0.08}>
             <div className="about-copy">
-              <div className="about-copy-block"><span className="about-copy-index">01 / EXPERIÊNCIA</span><p className="serif-copy">Sou Pedro Rocha, editor de vídeo com mais de dois anos de experiência criando conteúdos para marcas pessoais, profissionais liberais e lançamentos digitais. Meu trabalho combina ritmo, clareza e identidade visual para transformar cada ideia em uma comunicação que prende atenção.</p></div>
+              <div className="about-copy-block"><span className="about-copy-index">01 / EXPERIÊNCIA</span><p className="serif-copy">Sou Pedro Rocha, editor de vídeo com mais de dois anos de experiência criando conteúdos para marcas pessoais, profissionais liberais e lançamentos digitais. Meu trabalho combina ritmo, clareza e identidade visual para transformar cada ideia em uma peça audiovisual que atinge seu público-alvo, se encaixando exatamente na sua estratégia de conteúdo.</p></div>
               <div className="about-copy-block"><span className="about-copy-index">02 / ALCANCE</span><p className="serif-copy">Ao longo desse caminho, já participei da edição de mais de 50 perfis e de mais de 2.000 vídeos para médicos, advogados e especialistas. Cada projeto parte de uma necessidade diferente — e termina em um conteúdo pronto para comunicar com autoridade.</p></div>
             </div>
             <div className="client-list">
-              <div className="client-list-heading"><Eyebrow>Principais projetos e parcerias</Eyebrow><span className="client-count">05</span></div>
+              <div className="client-list-heading"><Eyebrow>Principais projetos e parcerias</Eyebrow><span className="client-count">07</span></div>
               <ul className="client-list-items">
-                {['Sublime Cariri', 'Verz', 'ALP', 'Pedro Vidoca', 'Luana Pavanate'].map((client, index) => <li key={client}><span>{client}</span><small>0{index + 1}</small></li>)}
+                {['Sublime Cariri', 'Verz', 'ALP', 'Pedro Vidoca', 'Luana Pavanate', 'Pedro Assaad', 'Flávia Marinho'].map((client, index) => <li key={client}><span>{client}</span><small>0{index + 1}</small></li>)}
               </ul>
             </div>
           </Reveal>

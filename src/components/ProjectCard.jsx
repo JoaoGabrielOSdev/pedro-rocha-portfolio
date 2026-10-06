@@ -14,7 +14,7 @@ export default function ProjectCard({ project, index = 0, featured = false }) {
           <div className="project-play"><Play size={17} fill="currentColor" /></div>
           <span className="project-format">{project.formato.split('·')[0].trim()}</span>
         </div>
-        <div className="project-caption"><span>{project.categoria === 'Lançamentos' ? 'Talking head' : project.categoria === 'Motion' ? 'Institucional e eventos' : project.categoria === 'Redes sociais' ? (index % 2 ? 'Conteúdo para TikTok' : 'Conteúdo para Instagram') : 'Cortes de lives'} <ArrowUpRight size={14} /></span><span className="hidden text-xs text-white/35 sm:inline">{project.cliente}</span></div>
+        <div className="project-caption"><span>{project.filtro || project.categoria} <ArrowUpRight size={14} /></span><span className="hidden text-xs text-white/35 sm:inline">{project.cliente}</span></div>
       </Link>
     </motion.article>
   );

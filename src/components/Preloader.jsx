@@ -37,7 +37,7 @@ export default function Preloader() {
             transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.img
-              src="/images/logo-pedro-rocha.png"
+              src="/images/logo-client.png"
               alt="Pedro Rocha — editor de vídeo"
               className="preloader-logo"
               initial={{ opacity: 0.2, scale: 1.02, filter: 'brightness(0) invert(1) blur(7px)' }}

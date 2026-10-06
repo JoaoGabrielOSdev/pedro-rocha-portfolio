@@ -7,13 +7,13 @@ import { categorias, projetos } from '../data/projetos';
 
 export default function Portfolio() {
   const [active, setActive] = useState('Todos');
-  const filtered = useMemo(() => active === 'Todos' ? projetos : projetos.filter((project) => project.categoria === active), [active]);
+  const filtered = useMemo(() => active === 'Todos' ? projetos : projetos.filter((project) => project.filtro === active), [active]);
   const reveal = { hidden: { opacity: 0, y: 22 }, visible: (delay = 0) => ({ opacity: 1, y: 0, transition: { delay, duration: .7, ease: [0.22, 1, 0.36, 1] } }) };
 
   return (
     <div className="mx-auto max-w-[1440px] px-5 pb-24 pt-36 md:px-10 md:pb-36">
       <motion.header className="portfolio-hero" initial="hidden" animate="visible" variants={reveal}>
-        <motion.div className="portfolio-hero-topline" variants={reveal} custom={0}><p className="eyebrow">Arquivo de trabalhos / 2026</p><span>01 — 06</span></motion.div>
+        <motion.div className="portfolio-hero-topline" variants={reveal} custom={0}><p className="eyebrow">Arquivo de trabalhos / 2026</p><span>01 — {String(projetos.length).padStart(2, '0')}</span></motion.div>
         <div className="portfolio-hero-grid">
           <motion.h1 variants={reveal} custom={.12}>Portfólio</motion.h1>
           <motion.div className="portfolio-hero-aside" variants={reveal} custom={.2}><p>Uma seleção de trabalhos em edição de vídeo, conteúdo digital, lançamentos e projetos institucionais.</p><div><span>Seleção curada</span><span>{String(projetos.length).padStart(2, '0')} projetos / 2026</span></div></motion.div>
