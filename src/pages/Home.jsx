@@ -82,14 +82,11 @@ export default function Home() {
       </section>
 
       <section className="reference-container reference-section motion-collage" aria-label="Seleção de motion e direção visual">
-        <Reveal className="motion-collage-copy" direction="left">
-          <div className="motion-collage-head"><Eyebrow>Motion&nbsp; / &nbsp;Direção visual</Eyebrow><span className="motion-collage-count">04</span></div>
-          <h2 className="motion-collage-title">A edição<br />também mora<br />nos detalhes.</h2>
-          <p className="motion-collage-description serif-copy">Tipografia, transições e camadas visuais que ajudam cada mensagem a ganhar ritmo, clareza e presença.</p>
-          <span className="motion-collage-note">Recortes de motion / identidade visual</span>
-        </Reveal>
-        <div className="motion-collage-grid">
-          {['assaad.gif', 'flavia.gif', 'motion.gif', 'herisson.gif'].map((gif, index) => <Reveal key={gif} className={`motion-collage-item motion-collage-item-${index + 1}`} direction={index % 2 ? 'right' : 'left'}><span className="motion-collage-index">0{index + 1}</span><img src={`/gifs/${gif}`} alt="Animação de projeto audiovisual" loading="lazy" /></Reveal>)}
+        <div className="motion-collage-head"><Eyebrow>Interlúdio visual&nbsp; / &nbsp;Motion</Eyebrow><span className="motion-collage-count">04</span></div>
+        <div className="motion-collage-board">
+          <div className="motion-collage-grid">
+            {[['assaad.gif', 'Pedro Assad / SAME'], ['flavia.gif', 'Flávia Marinho / lançamentos'], ['motion.gif', 'Estudo de composição'], ['herisson.gif', 'Depoimentos / prova social']].map(([gif, label], index) => <Reveal key={gif} className={`motion-collage-item motion-collage-item-${index + 1}`} direction={index % 2 ? 'right' : 'left'}><span className="motion-collage-index">0{index + 1}</span><img src={`/gifs/${gif}`} alt={`Motion aplicado em ${label}`} loading="lazy" /><span className="motion-collage-label">{label}</span></Reveal>)}
+          </div>
         </div>
       </section>
 
