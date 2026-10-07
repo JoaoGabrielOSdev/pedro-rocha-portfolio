@@ -611,3 +611,239 @@ button, input, textarea { font: inherit; }
     transition-duration: .01ms !important;
   }
 }
+
+/* Cross-device layout calibration: keep the editorial grid fluid on Mac
+   notebooks, wide desktop monitors, tablets and narrow phones. */
+:root {
+  --page-gutter: clamp(1.5rem, 4.4vw, 5rem);
+  --layout-max: 1760px;
+}
+
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+.reference-container,
+.services-page,
+.contact-page,
+.project-detail-player-shell {
+  width: min(calc(100% - (2 * var(--page-gutter))), var(--layout-max));
+}
+
+.site-shell {
+  width: min(100%, var(--layout-max));
+  max-width: var(--layout-max);
+}
+
+.about-portrait-panel {
+  min-height: 0;
+}
+
+.about-portrait {
+  height: auto;
+  aspect-ratio: 4 / 5;
+}
+
+.project-detail-player,
+.project-detail-video-wrap {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (min-width: 1281px) {
+  .hero-copy {
+    max-width: min(760px, 52vw);
+  }
+
+  .hero-copy h1.font-display {
+    font-size: clamp(4.2rem, 6.6vw, 7.7rem) !important;
+  }
+
+  .about-portrait-panel {
+    align-self: start;
+  }
+}
+
+/* The 10–13 inch notebook range needs a softer two-column rhythm than the
+   wide desktop layout, especially for project cards and contact forms. */
+@media (min-width: 961px) and (max-width: 1280px) {
+  :root {
+    --page-gutter: 2rem;
+  }
+
+  .reference-container,
+  .services-page,
+  .contact-page,
+  .project-detail-player-shell {
+    width: calc(100% - 4rem);
+  }
+
+  header .reference-container {
+    width: calc(100% - 3rem);
+  }
+
+  header img {
+    width: 154px !important;
+  }
+
+  header nav {
+    gap: 24px;
+  }
+
+  .reference-nav-link {
+    font-size: 9px;
+    letter-spacing: .18em;
+  }
+
+  .reference-hero {
+    height: clamp(580px, 76svh, 760px);
+  }
+
+  .hero-photo {
+    inset: -3% -3% -3% 42%;
+    background-position: 58% center;
+  }
+
+  .hero-light-pass {
+    left: 42%;
+  }
+
+  .hero-shade {
+    background: linear-gradient(90deg, #081113 0%, #081113 30%, rgba(8, 17, 19, .98) 42%, rgba(8, 17, 19, .72) 58%, rgba(8, 17, 19, .16) 100%), linear-gradient(180deg, rgba(8, 17, 19, .12) 0%, transparent 25%, transparent 70%, rgba(8, 17, 19, .82) 100%);
+  }
+
+  .hero-content {
+    align-items: center;
+    padding-bottom: 0;
+  }
+
+  .hero-copy {
+    max-width: 54%;
+    padding-left: 16px;
+  }
+
+  .hero-copy h1.font-display {
+    font-size: clamp(3.8rem, 6.7vw, 6.7rem) !important;
+    line-height: .9 !important;
+  }
+
+  .hero-copy > p {
+    max-width: 360px;
+    font-size: .98rem;
+  }
+
+  .work-intro {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .work-filters {
+    align-self: stretch;
+    border-top: 1px solid #3b5159;
+    border-left: 0;
+    padding: 16px 0 4px;
+  }
+
+  .work-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .launch-section,
+  .process-section,
+  .services-strip {
+    grid-template-columns: .9fr 1.1fr;
+    gap: 42px;
+  }
+
+  .launch-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 24px;
+  }
+
+  .about-strip {
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    gap: 42px;
+  }
+
+  .about-portrait {
+    aspect-ratio: 4 / 5;
+  }
+
+  .cta-main {
+    gap: 48px;
+  }
+
+  .portfolio-hero-grid,
+  .contact-hero-grid,
+  .services-hero-grid {
+    gap: 42px;
+  }
+
+  .portfolio-hero-grid h1 {
+    font-size: clamp(5rem, 10vw, 8.2rem);
+  }
+
+  .contact-hero-grid h1 {
+    font-size: clamp(4.5rem, 8.5vw, 7.4rem);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 960px) {
+  :root {
+    --page-gutter: 2rem;
+  }
+
+  .reference-container,
+  .services-page,
+  .contact-page,
+  .project-detail-player-shell {
+    width: calc(100% - 4rem);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --page-gutter: 1rem;
+  }
+
+  .reference-container,
+  .services-page,
+  .contact-page,
+  .project-detail-player-shell {
+    width: calc(100% - 2rem);
+  }
+
+  header .reference-container {
+    width: calc(100% - 2rem);
+  }
+
+  header img {
+    width: clamp(8.5rem, 38vw, 11.25rem) !important;
+  }
+
+  .about-portrait {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@media (max-width: 380px) {
+  .reference-container,
+  .services-page,
+  .contact-page,
+  .project-detail-player-shell,
+  header .reference-container {
+    width: calc(100% - 1.5rem);
+  }
+}

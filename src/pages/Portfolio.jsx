@@ -11,7 +11,7 @@ export default function Portfolio() {
   const reveal = { hidden: { opacity: 0, y: 22 }, visible: (delay = 0) => ({ opacity: 1, y: 0, transition: { delay, duration: .7, ease: [0.22, 1, 0.36, 1] } }) };
 
   return (
-    <div className="mx-auto max-w-[1440px] px-5 pb-24 pt-36 md:px-10 md:pb-36">
+    <div className="site-shell mx-auto max-w-[1440px] px-5 pb-24 pt-36 md:px-10 md:pb-36">
       <motion.header className="portfolio-hero" initial="hidden" animate="visible" variants={reveal}>
         <motion.div className="portfolio-hero-topline" variants={reveal} custom={0}><p className="eyebrow">Arquivo de trabalhos / 2026</p><span>01 — {String(projetos.length).padStart(2, '0')}</span></motion.div>
         <div className="portfolio-hero-grid">
