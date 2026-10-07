@@ -847,3 +847,13 @@ video {
     width: calc(100% - 1.5rem);
   }
 }
+
+/* Keep the first hero line clear of the fixed header on notebook and tablet
+   viewports, where the available vertical space is noticeably shorter. */
+@media (min-width: 641px) and (max-width: 1280px) {
+  .hero-content {
+    align-items: flex-end;
+    padding-top: clamp(96px, 12vh, 140px);
+    padding-bottom: clamp(40px, 7vh, 76px);
+  }
+}
